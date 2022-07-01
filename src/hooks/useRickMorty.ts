@@ -18,8 +18,6 @@ const useRickMorty = (): ReturnType => {
 
   const search = useCallback((parameters: CharacterApiParameters) => {
     setIsLoading(true);
-    setCharacters([]);
-    setCurrentPage(0);
     setPages(0);
     setParams(parameters);
 
