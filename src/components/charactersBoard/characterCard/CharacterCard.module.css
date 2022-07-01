@@ -1,0 +1,13 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+  padding: 10px;
+}
+
+.avatar {
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+}
