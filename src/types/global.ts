@@ -22,6 +22,16 @@ export type Character = {
   created: string;
 };
 
+export type Episode = {
+  id: number;
+  name: string;
+  air_date: string;
+  episode: number;
+  characters: string[];
+  url: string;
+  created: string;
+};
+
 export type Favourite = {
   id: number;
   name: string;

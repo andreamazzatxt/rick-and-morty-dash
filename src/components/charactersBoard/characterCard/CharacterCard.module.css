@@ -12,3 +12,9 @@
   height: 70px;
   width: 70px;
 }
+
+.episodeBox {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+}

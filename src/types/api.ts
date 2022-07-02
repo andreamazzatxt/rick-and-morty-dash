@@ -1,4 +1,4 @@
-import { Character, CharacterStatus, Gender } from "./global";
+import { Character, CharacterStatus, Episode, Gender } from "./global";
 
 interface ApiResponse {
   info: {
@@ -22,3 +22,5 @@ export interface CharacterApiParameters {
 export interface CharacterResponse extends ApiResponse {
   results: Character[];
 }
+
+export type EpisodeResponse = Episode[];

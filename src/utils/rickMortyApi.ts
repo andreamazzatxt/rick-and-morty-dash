@@ -1,4 +1,8 @@
-import { CharacterApiParameters, CharacterResponse } from "./../types/api";
+import {
+  CharacterApiParameters,
+  CharacterResponse,
+  EpisodeResponse,
+} from "./../types/api";
 const URL = "https://rickandmortyapi.com/api";
 
 const parseApiParameters = (parameters: CharacterApiParameters) => {
@@ -26,4 +30,19 @@ export const getCharacters = async (params?: CharacterApiParameters) => {
     console.log(error);
   }
   return data;
+};
+
+export const getMultipleEpisodes = async (
+  episodes: string[]
+): Promise<EpisodeResponse> => {
+  const query = episodes.map((url) => url.split("/").reverse()[0]).join(",");
+  try {
+    const res = await fetch(URL + "/episode/" + query);
+    if (res.status === 200) {
+      return await res.json();
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return [];
 };

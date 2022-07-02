@@ -1,6 +1,7 @@
-import { useContext, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../../contexts/global";
-import { Character } from "../../../types/global";
+import { Character, Episode } from "../../../types/global";
+import { getMultipleEpisodes } from "../../../utils/rickMortyApi";
 
 import Modal from "../../modal/Modal";
 import styles from "./CharacterCard.module.css";
@@ -13,9 +14,18 @@ const CharacterCard = ({ data }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const { favourites, addFavourite, removeFavourite } =
     useContext(GlobalContext);
+  const [episodes, setEpisodes] = useState<Episode[]>([]);
+
+  const handleClick = useCallback(() => {
+    setIsModalOpen(true);
+    getMultipleEpisodes(data.episode).then((results) => {
+      setEpisodes(results);
+    });
+  }, [data.episode]);
+
   return (
     <>
-      <div className={styles.card} onClick={() => setIsModalOpen(true)}>
+      <div className={styles.card} onClick={handleClick}>
         <img
           className={styles.avatar}
           src={data.image}
@@ -23,10 +33,7 @@ const CharacterCard = ({ data }: Props) => {
         />
         <p>{data.name}</p>
       </div>
-      <Modal
-        isOpen={isModalOpen}
-        handleClose={() => setIsModalOpen(false)}
-      >
+      <Modal isOpen={isModalOpen} handleClose={() => setIsModalOpen(false)}>
         <div>
           <h2>Details</h2>
           <img src={data.image} alt={data.name + " image"} />
@@ -36,6 +43,12 @@ const CharacterCard = ({ data }: Props) => {
           <p>species: {data.species}</p>
           <p>origin: {data.origin.name}</p>
           <p>location: {data.location.name}</p>
+          <p>Episodes: </p>
+          <div className={styles.episodeBox}>
+            {episodes.map((ep) => (
+              <span key={ep.episode}>{ep.name}</span>
+            ))}
+          </div>
           {!favourites?.some(({ id }) => id === data.id) ? (
             <button
               onClick={() =>
