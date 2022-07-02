@@ -1,9 +1,6 @@
 import { useCallback, useState } from "react";
-import {
-  CharacterApiParameters,
-  CharacterStatus,
-  Gender,
-} from "../../types/api";
+import { CharacterApiParameters } from "../../types/api";
+import { CharacterStatus, Gender } from "../../types/global";
 import styles from "./SearchForm.module.css";
 
 type Props = {

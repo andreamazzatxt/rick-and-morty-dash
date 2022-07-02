@@ -1,0 +1,7 @@
+.icon {
+  color: red;
+  position: fixed;
+  top: 0.5em;
+  right: 0.5em;
+  cursor: pointer;
+}

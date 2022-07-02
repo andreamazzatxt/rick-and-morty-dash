@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import { Character, CharacterApiParameters } from "../types/api";
+import {  CharacterApiParameters } from "../types/api";
+import { Character } from "../types/global";
 import { getCharacters } from "../utils/rickMortyApi";
 
 type ReturnType = {

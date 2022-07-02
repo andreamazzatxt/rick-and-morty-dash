@@ -1,6 +1,6 @@
 import styles from "./CharactersBoard.module.css";
-import { Character } from "../../types/api";
 import CharacterCard from "./characterCard/CharacterCard";
+import { Character } from "../../types/global";
 
 type Props = {
   characters: Character[];
