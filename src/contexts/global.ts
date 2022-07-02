@@ -1,5 +1,5 @@
 import { Favourite } from "./../types/global";
-import { createContext, ReactNode } from "react";
+import { createContext } from "react";
 
 type GlobalContexType = {
   favourites?: Favourite[];

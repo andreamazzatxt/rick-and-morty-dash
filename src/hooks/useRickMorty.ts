@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
-import {  CharacterApiParameters } from "../types/api";
+import { CharacterApiParameters } from "../types/api";
 import { Character } from "../types/global";
 import { getCharacters } from "../utils/rickMortyApi";
 
 type ReturnType = {
   characters: Character[];
-  getMoreResults: () => void;
+  pages: number;
+  currentPage: number;
+  goToPage: (page: number) => void;
   search: (parameters: CharacterApiParameters) => void;
   isLoading: boolean;
 };
@@ -31,21 +33,34 @@ const useRickMorty = (): ReturnType => {
       .finally(() => setIsLoading(false));
   }, []);
 
-  const getMoreResults = useCallback(() => {
-    if (currentPage === pages) {
-      return;
-    }
-    const newCurrentPage = currentPage + 1;
-    setCurrentPage(newCurrentPage);
-    getCharacters({ ...params, page: newCurrentPage }).then((data) =>
-      setCharacters((prev) => [...prev, ...data.results])
-    );
-  }, [currentPage, pages, params]);
+  const goToPage = useCallback(
+    (page: number) => {
+      if (page > pages) {
+        return;
+      }
+      setIsLoading(true);
+      setCurrentPage(page);
+      getCharacters({ ...params, page })
+        .then((data) => {
+          setCharacters(data.results);
+          setCurrentPage(page);
+        })
+        .finally(() => setIsLoading(false));
+    },
+    [pages, params]
+  );
 
   useEffect(() => {
     search({});
   }, [search]);
-  return { characters, getMoreResults, search, isLoading };
+  return {
+    characters,
+    pages,
+    currentPage,
+    search,
+    goToPage,
+    isLoading,
+  };
 };
 
 export default useRickMorty;

@@ -16,7 +16,7 @@ const Favourites = () => {
         <div>
           <h2>Favourites</h2>
           {favourites?.map((data) => (
-            <FavouriteCard data={data} />
+            <FavouriteCard key={`fav-${data.id}`} data={data} />
           ))}
         </div>
       </Modal>
