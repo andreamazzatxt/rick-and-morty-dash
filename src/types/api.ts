@@ -26,7 +26,7 @@ export type Character = {
   origin: Location;
   location: Location;
   image: string;
-  episodes: string[];
+  episode: string[];
   url: string;
   created: string;
 };
