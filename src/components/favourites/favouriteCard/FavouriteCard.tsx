@@ -10,12 +10,12 @@ type Props = {
 };
 const FavouriteCard = ({ data }: Props) => {
   const { removeFavourite } = useContext(GlobalContext);
-
   const [characterData, setCharacterData] = useState<Character>();
 
   useEffect(() => {
     getSingleCharacter(data.id).then((char) => setCharacterData(char));
   }, [data.id]);
+
   return (
     <div className={styles.wrapper}>
       {characterData && <CharacterCard data={characterData} />}

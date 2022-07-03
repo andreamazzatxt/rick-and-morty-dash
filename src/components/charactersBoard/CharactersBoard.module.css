@@ -2,6 +2,6 @@
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  justify-content: space-around;
+  justify-content: flex-start;
   margin: 0 auto;
 }

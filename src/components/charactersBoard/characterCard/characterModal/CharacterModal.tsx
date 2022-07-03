@@ -3,6 +3,7 @@ import { GlobalContext } from "../../../../contexts/global";
 import { Character, Episode } from "../../../../types/global";
 import Modal from "../../../modal/Modal";
 import styles from "./CharacterModal.module.css";
+import FavouriteButton from "./favouriteButton/FavouriteButton";
 
 type Props = {
   isModalOpen: boolean;
@@ -18,20 +19,22 @@ const CharacterModal = ({
 }: Props) => {
   const { favourites, addFavourite, removeFavourite } =
     useContext(GlobalContext);
+
   const handleAddFavourite = useCallback(() => {
-    addFavourite &&
-      addFavourite({
-        id: data.id,
-        name: data.name,
-        url: data.url,
-        image: data.image,
-      });
+    addFavourite({
+      id: data.id,
+      name: data.name,
+      url: data.url,
+      image: data.image,
+    });
   }, [addFavourite, data.id, data.image, data.name, data.url]);
 
   const handleRemoveFavourite = useCallback(
-    () => removeFavourite && removeFavourite(data.id),
+    () => removeFavourite(data.id),
     [data.id, removeFavourite]
   );
+  const isFav = !!favourites?.some(({ id }) => id === data.id);
+
   return (
     <Modal isOpen={isModalOpen} handleClose={() => setIsModalOpen(false)}>
       <div className={styles.modalContent}>
@@ -52,22 +55,10 @@ const CharacterModal = ({
               Location:
               <span className={styles.detail}> {data.location.name}</span>
             </p>
-            {!favourites?.some(({ id }) => id === data.id) ? (
-              <button
-                className={styles.favouriteButton}
-                onClick={handleAddFavourite}
-              >
-                <span className={styles.heartOff}> ♥ </span> Add Favourite
-              </button>
-            ) : (
-              <button
-                className={styles.favouriteButton}
-                onClick={handleRemoveFavourite}
-              >
-                <span className={styles.heartOn}> ♥ </span>
-                Remove Favourite
-              </button>
-            )}
+            <FavouriteButton
+              isFav={isFav}
+              handleAction={isFav ? handleRemoveFavourite : handleAddFavourite}
+            />
           </div>
         </div>
         <p className={styles.subtitle}>Episodes: </p>

@@ -37,21 +37,33 @@ const SearchForm = ({ search }: Props) => {
     [gender, name, search, species]
   );
 
-  const handleGenderChange = useCallback((newValue: string) => {
-    setGender(newValue as Gender);
-    const params = {
-      name,
-      status,
-      species,
-      gender: newValue as Gender,
-    };
-    search(params);
-  }, [name, search, species, status]);
+  const handleGenderChange = useCallback(
+    (newValue: string) => {
+      setGender(newValue as Gender);
+      const params = {
+        name,
+        status,
+        species,
+        gender: newValue as Gender,
+      };
+      search(params);
+    },
+    [name, search, species, status]
+  );
 
-  const handleBlur = useCallback(() => {
-    const params = { name, status, species, gender };
-    search(params);
-  }, [gender, name, search, species, status]);
+  const handleSpeciesChange = useCallback(
+    (newValue: string) => {
+      setSpecies(newValue);
+      const params = {
+        name,
+        status,
+        species: newValue,
+        gender,
+      };
+      search(params);
+    },
+    [gender, name, search, status]
+  );
 
   return (
     <div className={styles.wrapper}>
@@ -60,7 +72,6 @@ const SearchForm = ({ search }: Props) => {
         title="Insert Name"
         placeholder="Rick, Morty, Summer ..."
         value={name}
-        onBlur={handleBlur}
       />
       <SearchSelect
         options={["alive", "dead", "unknown"]}
@@ -70,11 +81,10 @@ const SearchForm = ({ search }: Props) => {
       />
 
       <SearchInput
-        onChange={(newValue: string) => setSpecies(newValue)}
+        onChange={handleSpeciesChange}
         title="Insert Species"
         placeholder="human, robot, dog ..."
         value={species}
-        onBlur={handleBlur}
       />
       <SearchSelect
         options={["female", "male", "genderless", "unknown"]}

@@ -2,9 +2,13 @@ import { Favourite } from "./../types/global";
 import { createContext } from "react";
 
 type GlobalContexType = {
-  favourites?: Favourite[];
-  addFavourite?: (favourite: Favourite) => void;
-  removeFavourite?: (id: number) => void;
+  favourites: Favourite[];
+  addFavourite: (favourite: Favourite) => void;
+  removeFavourite: (id: number) => void;
 };
 
-export const GlobalContext = createContext<GlobalContexType>({});
+export const GlobalContext = createContext<GlobalContexType>({
+  favourites: [],
+  addFavourite: (favourite: Favourite) => {},
+  removeFavourite: (id: number) => {},
+});
