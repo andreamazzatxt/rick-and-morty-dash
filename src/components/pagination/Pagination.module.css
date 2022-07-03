@@ -1,7 +1,7 @@
 .wrapper {
   display: flex;
   flex-wrap: wrap;
-  gap: 1em;
+  gap: 0.5rem;
   margin: 1em;
   max-width: 90vw;
   align-items: center;
@@ -9,10 +9,22 @@
 }
 
 .current {
-  background-color: blueviolet;
+  background-color: var(--secondary-color);
   cursor: pointer;
+  padding: 0.5rem 0.5rem;
+  min-width: 1rem;
+  border-radius: 20%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 
 .page {
   cursor: pointer;
+  padding: 0.5rem 0.5rem;
+  min-width: 1rem;
+  border-radius: 20%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }

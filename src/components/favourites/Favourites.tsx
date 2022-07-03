@@ -4,6 +4,7 @@ import Modal from "../modal/Modal";
 import FavouriteCard from "./favouriteCard/FavouriteCard";
 import favLogo from "../../assets/images/favourites_logo.png";
 import styles from "./Favourites.module.css";
+import NothingHere from "../nothingHere/NothingHere";
 
 const Favourites = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -20,6 +21,9 @@ const Favourites = () => {
             {favourites?.map((data) => (
               <FavouriteCard key={`fav-${data.id}`} data={data} />
             ))}
+            {favourites?.length === 0 && (
+              <NothingHere message="No favourites" />
+            )}
           </div>
         </div>
       </Modal>

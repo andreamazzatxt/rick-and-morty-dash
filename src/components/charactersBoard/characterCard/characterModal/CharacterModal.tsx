@@ -35,10 +35,10 @@ const CharacterModal = ({
   return (
     <Modal isOpen={isModalOpen} handleClose={() => setIsModalOpen(false)}>
       <div className={styles.modalContent}>
-        <h2>{data.name}</h2>
         <div className={styles.modalTop}>
           <img src={data.image} alt={data.name + " image"} />
           <div>
+            <h2 className={styles.subtitle}>{data.name}</h2>
             <p>
               Gender: <span className={styles.detail}>{data.gender}</span>
             </p>
@@ -57,7 +57,7 @@ const CharacterModal = ({
                 className={styles.favouriteButton}
                 onClick={handleAddFavourite}
               >
-                <span className={styles.heartOff}> ♥ </span> Add to favourites
+                <span className={styles.heartOff}> ♥ </span> Add Favourite
               </button>
             ) : (
               <button
@@ -65,12 +65,12 @@ const CharacterModal = ({
                 onClick={handleRemoveFavourite}
               >
                 <span className={styles.heartOn}> ♥ </span>
-                Remove Fav
+                Remove Favourite
               </button>
             )}
           </div>
         </div>
-        <p>Episodes: </p>
+        <p className={styles.subtitle}>Episodes: </p>
         <div className={styles.episodeBox}>
           {episodes &&
             episodes.map((ep) => (

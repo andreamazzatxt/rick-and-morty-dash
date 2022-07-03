@@ -68,6 +68,12 @@
   text-overflow: ellipsis;
 }
 
+.subtitle {
+  font-family: Shwifty;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
 @media only screen and (max-width: 1024px) {
   .modalTop {
     flex-direction: column;

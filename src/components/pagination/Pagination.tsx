@@ -10,16 +10,13 @@ const Pagination = ({ totalPages, currentPage, goToPage }: Props) => {
   return (
     <div className={styles.wrapper}>
       {getPagesArray(totalPages).map((page) => (
-        <span
+        <div
           className={page === currentPage ? styles.current : styles.page}
-          onClick={() => {
-            console.log(page);
-            goToPage(page);
-          }}
+          onClick={() => goToPage(page)}
           key={`page-${page}`}
         >
           {page}
-        </span>
+        </div>
       ))}
     </div>
   );

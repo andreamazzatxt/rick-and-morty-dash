@@ -2,7 +2,7 @@
   z-index: 1;
   height: 100%;
   width: 100vw;
-  background-color: rgba(0, 0, 0, 0.78);
+  background-color: rgba(0, 0, 0, 0.281);
   position: fixed;
   top: 0;
   left: 0;
@@ -14,15 +14,17 @@
 .modal {
   position: relative;
   background-color: white;
-  max-height: 60vh;
+  max-height: 70vh;
   width: 90vw;
   padding: 1rem;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 20px;
 }
 
 .close {
   cursor: pointer;
-  color: red;
+  color: var(--secondary-color);
   position: absolute;
   top: 1rem;
   right: 1rem;
