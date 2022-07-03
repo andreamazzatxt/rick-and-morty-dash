@@ -7,11 +7,9 @@ import MainWrapper from "../components/wrapper/MainWrapper";
 import { GlobalContext } from "../contexts/global";
 import useFavorites from "../hooks/useFavorites";
 import useRickMorty from "../hooks/useRickMorty";
-import portal from "../assets/images/rm_portal.png";
 
 const App = () => {
-  const { characters, pages, currentPage, search, isLoading, goToPage } =
-    useRickMorty();
+  const { characters, pages, currentPage, search, goToPage } = useRickMorty();
   const { favourites, addFavourite, removeFavourite } = useFavorites();
 
   return (

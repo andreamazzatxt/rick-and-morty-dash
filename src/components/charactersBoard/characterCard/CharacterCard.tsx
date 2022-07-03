@@ -15,10 +15,7 @@ const CharacterCard = ({ data }: Props) => {
 
   const handleClick = useCallback(() => {
     setIsModalOpen(true);
-    getMultipleEpisodes(data.episode).then((results) => {
-      console.log(results);
-      setEpisodes(results || []);
-    });
+    getMultipleEpisodes(data.episode).then((results) => setEpisodes(results));
   }, [data.episode]);
 
   return (
