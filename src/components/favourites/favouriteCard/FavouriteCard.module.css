@@ -1,7 +1,5 @@
 .wrapper {
   position: relative;
-  display: flex;
-  gap: 1em;
 }
 
 .wrapper > button {

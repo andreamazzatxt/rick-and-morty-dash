@@ -11,6 +11,10 @@
   gap: 2rem;
 }
 
+.modalTop > img {
+  border-radius: 20px;
+}
+
 .favouriteButton {
   background: none;
   color: var(--main-color);
