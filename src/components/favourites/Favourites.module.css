@@ -8,3 +8,16 @@
 .icon > img {
   height: 5rem;
 }
+
+.title {
+  font-family: Shwifty;
+  text-align: center;
+  font-size: 3rem;
+}
+
+.favsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}

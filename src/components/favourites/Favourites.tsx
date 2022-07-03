@@ -15,10 +15,12 @@ const Favourites = () => {
       </div>
       <Modal isOpen={isOpen} handleClose={() => setIsOpen(false)}>
         <div>
-          <h2>Favourites</h2>
-          {favourites?.map((data) => (
-            <FavouriteCard key={`fav-${data.id}`} data={data} />
-          ))}
+          <h2 className={styles.title}>Favourites</h2>
+          <div className={styles.favsContainer}>
+            {favourites?.map((data) => (
+              <FavouriteCard key={`fav-${data.id}`} data={data} />
+            ))}
+          </div>
         </div>
       </Modal>
     </>

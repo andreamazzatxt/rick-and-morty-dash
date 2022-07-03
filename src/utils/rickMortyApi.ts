@@ -1,3 +1,4 @@
+import { Character } from "./../types/global";
 import {
   CharacterApiParameters,
   CharacterResponse,
@@ -30,6 +31,18 @@ export const getCharacters = async (params?: CharacterApiParameters) => {
     console.log(error);
   }
   return data;
+};
+
+export const getSingleCharacter = async (id: number) => {
+  try {
+    const res = await fetch(URL + "/character/" + id);
+    if (res.status === 200) {
+      return (await res.json()) as Character;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return {} as Character;
 };
 
 export const getMultipleEpisodes = async (

@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { Character, Episode } from "../../../types/global";
+import { Character, Episode, Favourite } from "../../../types/global";
 import { getMultipleEpisodes } from "../../../utils/rickMortyApi";
 
 import styles from "./CharacterCard.module.css";
