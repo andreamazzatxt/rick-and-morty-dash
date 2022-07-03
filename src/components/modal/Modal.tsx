@@ -12,9 +12,9 @@ const Modal = ({ isOpen, children, handleClose }: Props) => (
     {isOpen && (
       <div className={styles.overlay}>
         <div className={styles.modal}>
-          <div className={styles.close} onClick={handleClose}>
-            x
-          </div>
+          <span className={styles.close} onClick={handleClose}>
+            +
+          </span>
           {children}
         </div>
       </div>

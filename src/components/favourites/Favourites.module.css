@@ -1,7 +1,10 @@
 .icon {
-  color: red;
   position: fixed;
-  top: 0.5em;
+  top: 2em;
   right: 0.5em;
   cursor: pointer;
+}
+
+.icon > img {
+  height: 5rem;
 }

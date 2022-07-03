@@ -3,18 +3,29 @@
   flex-direction: column;
   gap: 2px;
   align-items: center;
+  justify-content: center;
   padding: 10px;
   cursor: pointer;
+  width: 15vw;
+  transition-duration: 100ms;
+}
+
+.name {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-align: center;
+  font-weight: 600;
+  color: var(--text-color);
 }
 
 .avatar {
   border-radius: 50%;
+  border: solid 3px transparent;
   height: 70px;
   width: 70px;
+  transition-duration: 100ms;
 }
 
-.episodeBox {
-  display: flex;
-  gap: 1em;
-  flex-wrap: wrap;
+.card:hover .avatar {
+  border-color: var(--secondary-color);
 }

@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { GlobalContext } from "../../contexts/global";
 import Modal from "../modal/Modal";
 import FavouriteCard from "./favouriteCard/FavouriteCard";
+import favLogo from "../../assets/images/favourites_logo.png";
 import styles from "./Favourites.module.css";
 
 const Favourites = () => {
@@ -10,7 +11,7 @@ const Favourites = () => {
   return (
     <>
       <div onClick={() => setIsOpen(true)} className={styles.icon}>
-        FAVS
+        <img src={favLogo} alt="Favourites Logo" />
       </div>
       <Modal isOpen={isOpen} handleClose={() => setIsOpen(false)}>
         <div>

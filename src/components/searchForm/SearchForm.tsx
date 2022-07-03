@@ -46,7 +46,7 @@ const SearchForm = ({ search }: Props) => {
       gender: newValue as Gender,
     };
     search(params);
-  }, []);
+  }, [name, search, species, status]);
 
   const handleBlur = useCallback(() => {
     const params = { name, status, species, gender };
