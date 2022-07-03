@@ -17,6 +17,7 @@
 
 .favsContainer {
   display: flex;
+  gap: 2rem;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
