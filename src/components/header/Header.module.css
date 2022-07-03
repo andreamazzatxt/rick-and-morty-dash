@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.innerWrapper {
+  position: relative;
+}
+
+.innerWrapper > img {
+  width: 30vw;
+}

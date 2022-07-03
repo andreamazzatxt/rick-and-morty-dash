@@ -1,7 +1,9 @@
 import CharactersBoard from "../components/charactersBoard/CharactersBoard";
 import Favourites from "../components/favourites/Favourites";
+import Header from "../components/header/Header";
 import Pagination from "../components/pagination/Pagination";
 import SearchForm from "../components/searchForm/SearchForm";
+import MainWrapper from "../components/wrapper/MainWrapper";
 import { GlobalContext } from "../contexts/global";
 import useFavorites from "../hooks/useFavorites";
 import useRickMorty from "../hooks/useRickMorty";
@@ -15,8 +17,8 @@ const App = () => {
     <GlobalContext.Provider
       value={{ favourites, addFavourite, removeFavourite }}
     >
-      <div>
-        <h1>Rick and Morty {isLoading ? "..." : ""}</h1>
+      <MainWrapper>
+        <Header />
         <SearchForm search={search} />
         <CharactersBoard characters={characters} />
         <Pagination
@@ -25,7 +27,7 @@ const App = () => {
           totalPages={pages}
         />
         <Favourites />
-      </div>
+      </MainWrapper>
     </GlobalContext.Provider>
   );
 };

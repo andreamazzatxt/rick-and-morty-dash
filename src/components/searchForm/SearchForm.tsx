@@ -1,6 +1,8 @@
 import { useCallback, useState } from "react";
 import { CharacterApiParameters } from "../../types/api";
 import { CharacterStatus, Gender } from "../../types/global";
+import SearchInput from "./components/searchInput/SearchInput";
+import SearchSelect from "./components/searchSelect/SearchSelect";
 import styles from "./SearchForm.module.css";
 
 type Props = {
@@ -12,6 +14,40 @@ const SearchForm = ({ search }: Props) => {
   const [species, setSpecies] = useState("");
   const [gender, setGender] = useState<Gender>();
 
+  const handleNameChange = useCallback(
+    (newValue: string) => {
+      setName(newValue);
+      const params = { name: newValue, status, species, gender };
+      search(params);
+    },
+    [gender, search, species, status]
+  );
+
+  const handleStatusChange = useCallback(
+    (newValue: string) => {
+      setStatus(newValue as CharacterStatus);
+      const params = {
+        name,
+        status: newValue as CharacterStatus,
+        species,
+        gender,
+      };
+      search(params);
+    },
+    [gender, name, search, species]
+  );
+
+  const handleGenderChange = useCallback((newValue: string) => {
+    setGender(newValue as Gender);
+    const params = {
+      name,
+      status,
+      species,
+      gender: newValue as Gender,
+    };
+    search(params);
+  }, []);
+
   const handleBlur = useCallback(() => {
     const params = { name, status, species, gender };
     search(params);
@@ -19,38 +55,33 @@ const SearchForm = ({ search }: Props) => {
 
   return (
     <div className={styles.wrapper}>
-      <h3>SearchForm</h3>
-      <input
-        onChange={(e) => setName(e.currentTarget.value)}
-        type="text"
-        placeholder="Name"
+      <SearchInput
+        onChange={handleNameChange}
+        title="Insert Name"
+        placeholder="Rick, Morty, Summer ..."
         value={name}
         onBlur={handleBlur}
       />
-      <select
-        onChange={(e) => setStatus(e.currentTarget.value as CharacterStatus)}
-        onBlur={handleBlur}
-      >
-        <option value="alive">Alive</option>
-        <option value="dead">Dead</option>
-        <option value="unknown">Unknown</option>
-      </select>
-      <input
-        onChange={(e) => setSpecies(e.currentTarget.value)}
-        type="text"
-        placeholder="Species"
+      <SearchSelect
+        options={["alive", "dead", "unknown"]}
+        title="Select status"
+        currentOption={status}
+        onChange={handleStatusChange}
+      />
+
+      <SearchInput
+        onChange={(newValue: string) => setSpecies(newValue)}
+        title="Insert Species"
+        placeholder="human, robot, dog ..."
         value={species}
         onBlur={handleBlur}
       />
-      <select
-        onChange={(e) => setGender(e.currentTarget.value as Gender)}
-        onBlur={handleBlur}
-      >
-        <option value="female">Female</option>
-        <option value="male">Male</option>
-        <option value="genderless">Genderless</option>
-        <option value="genderless">Unknown</option>
-      </select>
+      <SearchSelect
+        options={["female", "male", "genderless", "unknown"]}
+        title={"Select Gender"}
+        currentOption={gender}
+        onChange={handleGenderChange}
+      />
     </div>
   );
 };

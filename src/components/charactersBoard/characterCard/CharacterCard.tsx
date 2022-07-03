@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import { GlobalContext } from "../../../contexts/global";
 import { Character, Episode } from "../../../types/global";
 import { getMultipleEpisodes } from "../../../utils/rickMortyApi";
@@ -19,7 +19,8 @@ const CharacterCard = ({ data }: Props) => {
   const handleClick = useCallback(() => {
     setIsModalOpen(true);
     getMultipleEpisodes(data.episode).then((results) => {
-      setEpisodes(results);
+      console.log(results);
+      setEpisodes(results || []);
     });
   }, [data.episode]);
 
@@ -45,9 +46,8 @@ const CharacterCard = ({ data }: Props) => {
           <p>location: {data.location.name}</p>
           <p>Episodes: </p>
           <div className={styles.episodeBox}>
-            {episodes.map((ep) => (
-              <span key={ep.episode}>{ep.name}</span>
-            ))}
+            {episodes &&
+              episodes.map((ep) => <span key={ep.episode}>{ep.name}</span>)}
           </div>
           {!favourites?.some(({ id }) => id === data.id) ? (
             <button

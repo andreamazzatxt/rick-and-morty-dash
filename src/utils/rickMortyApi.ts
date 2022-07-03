@@ -39,7 +39,8 @@ export const getMultipleEpisodes = async (
   try {
     const res = await fetch(URL + "/episode/" + query);
     if (res.status === 200) {
-      return await res.json();
+      const parsed = await res.json();
+      return Array.isArray(parsed) ? parsed : [parsed];
     }
   } catch (error) {
     console.log(error);
